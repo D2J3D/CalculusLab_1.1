@@ -76,6 +76,13 @@ class Test(Scene):
                 for dx in dx_list]
             )
             draw_func()
+
+            n_dx = (
+                Tex(f'For n = {n} and {e_type} equipment \n integral sum = {"{:.6f}".format(find_integral_sum(n, e_type))}')
+                    .next_to(ax, UP)
+                    .set_color(WHITE)
+                    .scale(0.8))
+            ax.add(n_dx)
             first_area = rectangles[0]
             self.play(LaggedStart(Create(first_area), run_time=1.5, lag_ratio=1))
             self.wait(0.5)
