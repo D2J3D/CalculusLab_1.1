@@ -82,7 +82,7 @@ class Test(Scene):
                     .next_to(ax, UP)
                     .set_color(WHITE)
                     .scale(0.8))
-            ax.add(n_dx)
+
             first_area = rectangles[0]
             self.play(LaggedStart(Create(first_area), run_time=1.5, lag_ratio=1))
             self.wait(0.5)
@@ -90,6 +90,7 @@ class Test(Scene):
                 self.wait(0.5)
                 new_area = rectangles[k]
                 self.play(Transform(first_area, new_area), run_time=1)
+            self.play(Write(n_dx), run_time=2.5)
             self.wait(1)
             self.wait()
         build_integral_recs(n, str(e_type))
