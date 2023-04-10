@@ -3,7 +3,7 @@ import math
 import numpy as np
 import sys
 #manim -pql ./main.py Test
-params = [str(x) for x in input("Params: ").split(" ")]
+params = [str(x) for x in input("Укажите (через пробел) кол-во точек разбиения и тип оснащенения (center/left/right): ").split(" ")]
 n = int(params[0])
 e_type = str(params[1])
 class Test(Scene):
@@ -27,27 +27,28 @@ class Test(Scene):
 
         def find_dx(n):
             t = [k / n for k in range(n + 1)]  # равномерное разбиение
-            dx = t[1] - t[0]
+            dx = t[1] - t[0] #мелкость
             return dx
-
+        
         def find_integral_sum(n, e_type):
             e_type = str(e_type)
-            t = [k / n for k in range(n + 1)]  # равномерное разбиение
+            t = [k / n for k in range(n + 1)]
             di_list = []
             di_list.append([t[0], t[1]])
             dx = t[1] - t[0]
             for i in range(1, len(t) - 1):
                 di_list.append([t[i], t[i + 1]])
             if e_type == "right":
-                eq_list = [math.e ** (-x[-1]) for x in di_list]  # оснащение (правая граница)
+                eq_list = [math.e ** (-x[-1]) for x in di_list]  # выбираем оснащение (правая граница)
             elif e_type == "left":
-                eq_list = [math.e ** (-x[0]) for x in di_list]
+                eq_list = [math.e ** (-x[0]) for x in di_list] 
             else:
                 eq_list = [math.e ** (-(x[0] + (x[1] - x[0])/2)) for x in di_list]
             integral_sum = sum([dx * f for f in eq_list])
             return integral_sum
-
-        def draw_func():
+        
+       
+        def draw_func(): # рисуем функцию e^(-x)
             self.add(graph1_lab)
             self.play(
                 LaggedStart(DrawBorderThenFill(ax)),
@@ -60,7 +61,7 @@ class Test(Scene):
 
             self.wait(0.25)
 
-        def build_integral_recs(n, e_type):
+        def build_integral_recs(n, e_type): #визуализация "интегральной суммы"
             e_type = str(e_type)
             dx_list = [find_dx(n)]
             rectangles = VGroup(
