@@ -1,4 +1,4 @@
-# CalculusLab
+# Лабораторная работа по дисциплине "Математический анализ", 1 семестр
 1. Вариант 8
 2. Код, который работает - [main.py](https://github.com/D2J3D/CalculusLab/blob/main/main.py)
 3. Демонстрационное видео - [Demonstration.mp4](https://github.com/D2J3D/CalculusLab/blob/main/Demonstration.mp4) (анимация того, как меняются интегральные суммы при измельчении разбиения)
